@@ -6,6 +6,7 @@ const stripe = new Stripe(STRIPE_PRIVATE_KEY);
 export const createSession = async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.create({
+        // line_items array the products will be pay for client
       line_items: [
         {
           price_data: {
@@ -13,7 +14,7 @@ export const createSession = async (req, res) => {
               name: "Laptop",
             },
             currency: "usd",
-            unit_amount: 2000,
+            unit_amount: 20000, //200 USD is in cent
           },
           quantity: 1,
         },
@@ -23,7 +24,7 @@ export const createSession = async (req, res) => {
               name: "TV",
             },
             currency: "usd",
-            unit_amount: 1000,
+            unit_amount: 10000,//100 usd
           },
           quantity: 2,
         },
